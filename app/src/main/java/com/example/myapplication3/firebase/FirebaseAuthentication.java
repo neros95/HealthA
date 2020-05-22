@@ -42,6 +42,7 @@ public class FirebaseAuthentication {
     }
 
     public boolean signInExistingUser(String email, String password) {
+        Log.d("EmailAuth", email);
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
                     @Override

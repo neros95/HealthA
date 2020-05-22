@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,11 +13,11 @@ import android.widget.Toast;
 
 import com.example.myapplication3.firebase.FirebaseAuthentication;
 import com.example.myapplication3.ui.CreateAccount;
-import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button, button1;
+    Button signInBtn, registerBtn;
     EditText email, password;
 
     Intent myIntent;
@@ -26,8 +27,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = findViewById(R.id.logIn);
-        button1 = findViewById(R.id.createAccount);
+        FirebaseAuthentication.mAuth = FirebaseAuth.getInstance();
+
+        signInBtn = findViewById(R.id.logIn);
+        registerBtn = findViewById(R.id.createAccount);
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
@@ -37,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
             goToMain2();
         }
 
-        button.setOnClickListener(new View.OnClickListener() {
+        signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Log.d("Email", email.getText().toString());
                 if (FirebaseAuthentication.firebaseAuth.signInExistingUser(email.getText().toString(), password.getText().toString())) {
                     goToMain2();
                 } else {
@@ -50,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-       button1.setOnClickListener(new View.OnClickListener() {
+       registerBtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                FragmentManager fragmentManager= getSupportFragmentManager();
