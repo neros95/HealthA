@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.myapplication3.R;
 import com.example.myapplication3.firebase.FirebaseAuthentication;
+import com.example.myapplication3.ui.dashboard.DashboardFragment;
 
 public class LogInFragment extends Fragment {
 
@@ -43,6 +44,9 @@ public class LogInFragment extends Fragment {
             public void onClick(View v) {
                 Log.d("Email", email.getText().toString());
                 if (FirebaseAuthentication.firebaseAuth.signInExistingUser(email.getText().toString(), password.getText().toString())) {
+                    FragmentManager fragmentManager= getActivity().getSupportFragmentManager();
+                    DashboardFragment dashboardFragment = new DashboardFragment();
+                    fragmentManager.beginTransaction().replace(R.id.main, dashboardFragment).commit();
                 } else {
                     Toast.makeText(getContext(),"Login failed. Incorrect email or password",Toast.LENGTH_SHORT).show();
                     email.setText("");
