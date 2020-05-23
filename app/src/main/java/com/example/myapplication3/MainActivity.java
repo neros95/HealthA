@@ -2,6 +2,7 @@ package com.example.myapplication3;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 
 import com.example.myapplication3.firebase.FirebaseAuthentication;
 import com.example.myapplication3.ui.CreateAccount;
+import com.example.myapplication3.ui.LogInFragment;
+import com.example.myapplication3.ui.dashboard.DashboardFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,42 +32,19 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseAuthentication.mAuth = FirebaseAuth.getInstance();
 
-        signInBtn = findViewById(R.id.logIn);
-        registerBtn = findViewById(R.id.createAccount);
-
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
-
-        boolean authState = FirebaseAuthentication.firebaseAuth.authState();
-        if (authState) {
-            goToMain2();
-        }
-
-        signInBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("Email", email.getText().toString());
-                if (FirebaseAuthentication.firebaseAuth.signInExistingUser(email.getText().toString(), password.getText().toString())) {
-                    goToMain2();
-                } else {
-                    Toast.makeText(getApplicationContext(),"Login failed. Incorrect email or password",Toast.LENGTH_SHORT).show();
-                    email.setText("");
-                    password.setText("");
-                }
-            }
-        });
-       registerBtn.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               FragmentManager fragmentManager= getSupportFragmentManager();
-               CreateAccount createAccount = new CreateAccount();
-               fragmentManager.beginTransaction().replace(R.id.main, createAccount).commit();
-           }
-       });
+        checkAuthState();
     }
 
-    private void goToMain2() {
-        myIntent = new Intent(MainActivity.this, Main2Activity.class);
-        startActivity(myIntent);
+    private void checkAuthState() {
+        boolean authState = FirebaseAuthentication.firebaseAuth.authState();
+        if (authState) {
+            FragmentManager fragmentManager= getSupportFragmentManager();
+            DashboardFragment dashboardFragment = new DashboardFragment();
+            fragmentManager.beginTransaction().replace(R.id.main, dashboardFragment).commit();
+        } else {
+            FragmentManager fragmentManager= getSupportFragmentManager();
+            LogInFragment logInFragment = new LogInFragment();
+            fragmentManager.beginTransaction().replace(R.id.main, logInFragment).commit();
+        }
     }
 }

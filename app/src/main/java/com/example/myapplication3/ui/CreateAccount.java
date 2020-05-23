@@ -1,6 +1,5 @@
 package com.example.myapplication3.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.myapplication3.Main2Activity;
 import com.example.myapplication3.R;
 
 /**
@@ -28,8 +26,8 @@ public class CreateAccount extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_create_account, container, false);
+        View v = inflater.inflate(R.layout.fragment_create_account, container, false);
 
-        return view;
+        return v;
     }
 }
