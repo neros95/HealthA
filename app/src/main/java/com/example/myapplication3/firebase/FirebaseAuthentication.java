@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.myapplication3.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.*;
@@ -12,7 +13,7 @@ import java.util.concurrent.Executor;
 
 import static android.content.ContentValues.TAG;
 
-public class FirebaseAuthentication {
+public class FirebaseAuthentication extends MainActivity {
 
     public static FirebaseAuthentication firebaseAuth = new FirebaseAuthentication();
 
@@ -23,7 +24,7 @@ public class FirebaseAuthentication {
 
     public boolean signInNewUser(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -44,7 +45,7 @@ public class FirebaseAuthentication {
     public boolean signInExistingUser(String email, String password) {
         Log.d("EmailAuth", email);
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
