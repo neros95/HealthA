@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    app:cbn_unselectedColor="#fff"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/workOutPlans"
+        android:title="Plans"
+        android:icon="@drawable/ic_home_black_24dp"
+        app:cnb_backgroundColor="#ff785b"
+        app:cnb_iconColor="#fff"
+        app:cnb_textColor="#fff"
+        />
+
+    <item
+        android:id="@+id/stepCounter"
+        android:title="Plans"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        app:cnb_backgroundColor="#ff785b"
+        app:cnb_iconColor="#fff"
+        app:cnb_textColor="#fff"
+        />
+
+    <item
+        android:id="@+id/myPlans"
+        android:title="Plans"
+        android:icon="@drawable/ic_person_black_24dp"
+        app:cnb_backgroundColor="#ff785b"
+        app:cnb_iconColor="#fff"
+        app:cnb_textColor="#fff"
+        />
+</menu>
