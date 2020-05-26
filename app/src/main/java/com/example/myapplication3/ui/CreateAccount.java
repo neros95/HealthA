@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.myapplication3.R;
+import com.example.myapplication3.firebase.FirebaseAuthentication;
+import com.example.myapplication3.ui.home.HomeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -27,7 +30,6 @@ public class CreateAccount extends Fragment {
     Button createAccount;
 
 
-    private FirebaseAuth mAuth;
 
     Button button;
     public CreateAccount() {
@@ -44,28 +46,21 @@ public class CreateAccount extends Fragment {
         name.findViewById(R.id.name);
         email.findViewById(R.id.emailAccount);
         button.findViewById(R.id.createAccount);
-        mAuth= FirebaseAuth.getInstance();
 
 
+createAccount.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
 
-        createAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+      FirebaseAuthentication firebaseAuthentication = new FirebaseAuthentication();
+        firebaseAuthentication.signInExistingUser(email.getText().toString(),password.getText().toString());
 
-                mAuth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+        FragmentManager fragmentManager= getActivity().getSupportFragmentManager();
+        HomeFragment homeFragment = new HomeFragment();
+        fragmentManager.beginTransaction().replace(R.id.createAccount, homeFragment).commit();
 
-                        if (task.isSuccessful()){
-                            Toast.makeText(getActivity(), "User Registration Successful", Toast.LENGTH_SHORT).show();
-
-                            //asd
-                        }
-                    }
-                });
-            }
-        });
-
+    }
+});
 
         return v;
     }
