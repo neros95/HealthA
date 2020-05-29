@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.myapplication3.R;
 import com.example.myapplication3.firebase.FirebaseAuthentication;
+import com.example.myapplication3.ui.dashboard.DashboardFragment;
 import com.example.myapplication3.ui.home.HomeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,12 +27,10 @@ import com.google.firebase.auth.FirebaseAuth;
  */
 public class CreateAccount extends Fragment {
 
-    EditText name,email,password;
+    EditText  emailAccount, password;
     Button createAccount;
 
 
-
-    Button button;
     public CreateAccount() {
 
 
@@ -43,29 +42,34 @@ public class CreateAccount extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_create_account, container, false);
 
-        name.findViewById(R.id.name);
-        email.findViewById(R.id.emailAccount);
-        button.findViewById(R.id.createAccount);
+        emailAccount = v.findViewById(R.id.emailAccount);
+        password = v.findViewById(R.id.passwordAccount);
+        createAccount = v.findViewById(R.id.createAccount);
 
 
-createAccount.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
+        createAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-      FirebaseAuthentication firebaseAuthentication = new FirebaseAuthentication();
-        firebaseAuthentication.signInExistingUser(email.getText().toString(),password.getText().toString());
+                Boolean login;
 
-        FragmentManager fragmentManager= getActivity().getSupportFragmentManager();
-        HomeFragment homeFragment = new HomeFragment();
-        fragmentManager.beginTransaction().replace(R.id.createAccount, homeFragment).commit();
+                System.out.println(emailAccount.getText().toString());
+                System.out.println(password.getText().toString());
 
-    }
-});
+                FirebaseAuthentication firebaseAuthentication= new FirebaseAuthentication();
+                login= firebaseAuthentication.signInNewUser(emailAccount.getText().toString(), password.getText().toString());
+                System.out.println(login);
+                //FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                //DashboardFragment dashboardFragment= new DashboardFragment();
+                //fragmentManager.beginTransaction().replace(R.id.main, dashboardFragment).commit();
+
+            }
+        });
 
         return v;
     }
 
-    public void registerUser(){
+    public void registerUser() {
 
     }
 }

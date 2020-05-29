@@ -25,14 +25,9 @@ public class PersonalInfoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.personal_info_fragment, container, false);
-    }
+        View view = inflater.inflate(R.layout.personal_info_fragment, container, false);
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(PersonalInfoViewModel.class);
-        // TODO: Use the ViewModel
+        return view;
     }
 
 }

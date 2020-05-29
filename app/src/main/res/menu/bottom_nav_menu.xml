@@ -18,4 +18,11 @@
         android:icon="@drawable/ic_person_black_24dp"
         android:title="My Info"/>
 
+    <item
+        android:id="@+id/workOutPlans"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="WorkOutPlans"
+        />
+
+
 </menu>

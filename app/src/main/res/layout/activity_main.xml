@@ -8,22 +8,22 @@
     tools:context=".MainActivity" >
 
     <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fragment_container"/>
+        android:layout_height="match_parent" />
 
-    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+       android:id="@+id/nav_bar"
+       android:layout_width="match_parent"
+       android:layout_height="72dp"
+       android:layout_alignParentBottom="true"
+       android:background="@color/colorPrimary"
+       android:elevation="16dp"
+       android:padding="8dp"
+       app:menu="@menu/bottom_nav_menu"
+       >
 
-        android:id="@+id/bottomNav"
-        android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/rounded"
-        android:elevation="16dp"
-        android:padding="8dp"
-        app:cnb_menuResource="@menu/new_navigation"
-        />
-
+   </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
 </RelativeLayout>

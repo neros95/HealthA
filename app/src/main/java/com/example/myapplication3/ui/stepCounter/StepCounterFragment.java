@@ -11,13 +11,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.myapplication3.R;
 
 public class StepCounterFragment extends Fragment {
 
     private StepCounterViewModel mViewModel;
-
+    ProgressBar stepCounter;
     public static StepCounterFragment newInstance() {
         return new StepCounterFragment();
     }
@@ -25,14 +26,12 @@ public class StepCounterFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.step_counter_fragment, container, false);
+       View view= inflater.inflate(R.layout.step_counter_fragment, container, false);
+
+       stepCounter = view.findViewById(R.id.stepCounter);
+
+       return  view;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(StepCounterViewModel.class);
-        // TODO: Use the ViewModel
-    }
 
 }

@@ -30,6 +30,11 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        height = root.findViewById(R.id.heigh);
+        weight= root.findViewById(R.id.weight);
+        result= root.findViewById(R.id.result);
+        calculateBmi= root.findViewById(R.id.calculateBMI);
         final TextView textView = root.findViewById(R.id.text_home);
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -37,11 +42,6 @@ public class HomeFragment extends Fragment {
                 textView.setText(s);
             }
         });
-
-        height.findViewById(R.id.heigh);
-        weight.findViewById(R.id.weight);
-        result.findViewById(R.id.result);
-        calculateBmi.findViewById(R.id.calculateBMI);
 
 
         calculateBmi.setOnClickListener(new View.OnClickListener() {
@@ -65,15 +65,15 @@ public class HomeFragment extends Fragment {
         result.setText("Your ideal weight" +c);
 
         if (c<=18.8){
-            Toast.makeText(getContext(),"You are underweight",Toast.LENGTH_LONG);
+            Toast.makeText(getActivity(),"You are underweight",Toast.LENGTH_LONG);
         }
         if ((c>= 18.8) && (c<25)) {
 
-            Toast.makeText(getContext(),"Normal weight", Toast.LENGTH_LONG);
+            Toast.makeText(getActivity(),"Normal weight", Toast.LENGTH_LONG);
 
         }
         if (c>=25){
-            Toast.makeText(getContext(),"Normal weight", Toast.LENGTH_LONG);
+            Toast.makeText(getActivity(),"Normal weight", Toast.LENGTH_LONG);
         }
     }
 }

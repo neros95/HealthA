@@ -13,8 +13,8 @@
     tools:context=".ui.stepCounter.StepCounterFragment">
 
     <Space
-        android:layout_width="match_parent"
-        android:layout_height="80dp" />
+    android:layout_width="match_parent"
+    android:layout_height="80dp" />
 
     <TextView
 
@@ -25,14 +25,15 @@
         android:text="Steps today"
 
         />
-
     <Space
         android:layout_width="match_parent"
-        android:layout_height="350dp" />
+        android:layout_height="200dp" />
 
     <ProgressBar
-        android:id="@+id/progressBar3"
+        android:id="@+id/stepCounter"
         style="?android:attr/progressBarStyle"
         android:layout_width="match_parent"
-        android:layout_height="125dp" />
+        android:layout_height="wrap_content" />
+
+
 </LinearLayout>
